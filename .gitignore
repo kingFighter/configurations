@@ -1,0 +1,10 @@
+*.org
+*.elc
+bin
+css
+etc
+info
+leim
+lisp
+site-lisp
+todos

@@ -262,3 +262,8 @@ the mru bookmark stack."
         "~/.emacs.d/vendor/yasnippet/snippets"        ;; the default collection
         ))
 (yas-global-mode 1)  
+;; (require 'org-notify) 
+
+(setq column-number-mode t)
+(set-face-foreground 'minibuffer-prompt "white")
+

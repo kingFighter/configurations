@@ -52,7 +52,7 @@
     guru-mode projectile
     magit move-text rainbow-mode
     smartparens undo-tree
-    volatile-highlights solarized-theme htmlize)
+    volatile-highlights solarized-theme htmlize nyan-mode)
   "A list of packages to ensure are installed at launch.")
 
 (defun kingFighter-packages-installed-p ()
