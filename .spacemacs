@@ -103,7 +103,7 @@ values."
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 13
+                               :size 20
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -223,6 +223,49 @@ layers configuration. You are free to put any user code."
 
   ;; enable spell check
   (spacemacs/toggle-spelling-checking-on)
+
+  ;; Anything that writes to the buffer while the region is active will overwrite it, including paste
+  ;; but also simply typing something or hitting backspace
+  (delete-selection-mode 1)
+
+  ;; http://www.emacswiki.org/emacs/WholeLineOrRegion
+  (defun my-kill-ring-save (beg end flash)
+    (interactive (if (use-region-p)
+                     (list (region-beginning) (region-end) nil)
+                   (list (line-beginning-position)
+                         (line-beginning-position 2) 'flash)))
+    (kill-ring-save beg end)
+    (when flash
+      (save-excursion
+        (if (equal (current-column) 0)
+            (goto-char end)
+          (goto-char beg))
+        (sit-for blink-matching-delay))))
+  (global-set-key [remap kill-ring-save] 'my-kill-ring-save)
+
+  (put 'kill-region 'interactive-form
+       '(interactive
+         (if (use-region-p)
+             (list (region-beginning) (region-end))
+           (list (line-beginning-position) (line-beginning-position 2)))))
+  ;; end of http://www.emacswiki.org/emacs/WholeLineOrRegion
+
+  ;; http://emacs.stackexchange.com/questions/17205/how-do-i-set-up-font-fallback-in-a-robust-way
+  ;; set fallback font just like css
+  (set-fontset-font "fontset-startup" 'unicode (font-spec :name "Consolas"
+                                                          :size 20
+                                                          :width `normal'
+                                                          :weight `normal'
+                                                          :powerline-scale 1.1) nil 'prepend)
+  (set-fontset-font "fontset-startup" 'unicode (font-spec :name "Source Code Pro"
+                                                          :size 20
+                                                          :width `normal'
+                                                          :weight `normal'
+                                                          :powerline-scale 1.1) nil 'prepend)
+  ;; end set font fallback
+
+  ;; disalbe better-defaults C-w key bindings
+  (global-set-key (kbd "C-w") 'kill-region)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
