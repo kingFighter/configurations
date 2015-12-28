@@ -254,13 +254,13 @@ layers configuration. You are free to put any user code."
   ;; set fallback font just like css
   (set-fontset-font "fontset-startup" 'unicode (font-spec :name "Consolas"
                                                           :size 20
-                                                          :width `normal'
-                                                          :weight `normal'
+                                                          :width 'normal
+                                                          :weight 'normal
                                                           :powerline-scale 1.1) nil 'prepend)
   (set-fontset-font "fontset-startup" 'unicode (font-spec :name "Source Code Pro"
                                                           :size 20
-                                                          :width `normal'
-                                                          :weight `normal'
+                                                          :width 'normal
+                                                          :weight 'normal
                                                           :powerline-scale 1.1) nil 'prepend)
   ;; end set font fallback
 
