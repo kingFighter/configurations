@@ -217,7 +217,7 @@ values."
    ;; If non nil line numbers are turned on in all `prog-mode' and `text-mode'
    ;; derivatives. If set to `relative', also turns on relative line numbers.
    ;; (default nil)
-   dotspacemacs-line-numbers nil
+   dotspacemacs-line-numbers t
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    ;; (default nil)
    dotspacemacs-smartparens-strict-mode nil
@@ -258,9 +258,6 @@ layers configuration. You are free to put any user code."
 
    ;; enable golden ratio
   (golden-ratio-mode 1)
-
-  ;; show line-numbers on the global
-  (spacemacs/toggle-line-numbers-on)
 
   ;; enable syntax check
   (spacemacs/toggle-syntax-checking-on)
