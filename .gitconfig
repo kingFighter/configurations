@@ -1,6 +1,3 @@
-[alias]
-        ms-setup = !git-ms-setup
-        ms-manage = !git-manage
 [diff]
         external= /absolute/ediff
         tool = ediff
