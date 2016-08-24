@@ -1,0 +1,17 @@
+[alias]
+        ms-setup = !git-ms-setup
+        ms-manage = !git-manage
+[diff]
+        external= /absolute/ediff
+        tool = ediff
+[difftool "ediff"]
+    cmd = /absolute/ediff "$LOCAL" "$REMOTE" "$BASE"
+[difftool]
+    prompt = false
+
+# [diff]
+#    external = /absolute/ediff
+
+# ediff
+# #!/bin/sh
+# emacs -nw --eval "(ediff-files \"$1\" \"$2\")"
