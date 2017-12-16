@@ -12,3 +12,5 @@
 # ediff
 # #!/bin/sh
 # emacs -nw --eval "(ediff-files \"$1\" \"$2\")"
+# or
+# emacsclient -c -a \"\" --eval "(ediff \"$1\" \"$2\")" 
