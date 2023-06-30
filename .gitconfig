@@ -1,6 +1,12 @@
+[user]
+	email = kevinlui598@gmail.com
+	name = Kaiyang Lyu
+[core]
+	editor = emacsclient -t
+[alias]                                                                                                                                                                                                                                                                         d = difftool
 [diff]
-        external= /absolute/ediff
-        tool = ediff
+   external= /absolute/ediff
+   tool = ediff
 [difftool "ediff"]
     cmd = /absolute/ediff "$LOCAL" "$REMOTE" "$BASE"
 [difftool]
