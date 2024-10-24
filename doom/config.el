@@ -78,10 +78,44 @@
 
 (after! lsp-clangd
   (setq lsp-clients-clangd-args
-        '("-j=3"
+        '(
+          ;; If set to true, code completion will include index symbols that are not defined in the scopes
+          ;; (e.g. namespaces) visible from the code completion point. Such completions can insert scope qualifiers
+          "--all-scopes-completion"
+          ;; Index project code in the background and persist index on disk.
           "--background-index"
+          ;; Enable clang-tidy diagnostics
           "--clang-tidy"
+          ;; Whether the clang-parser is used for code-completion
+          ;;   Use text-based completion if the parser is not ready (auto)
+          "--completion-parse=auto"
+          ;; Granularity of code completion suggestions
+          ;;   One completion item for each semantically distinct completion, with full type information (detailed)
           "--completion-style=detailed"
+          ;; clang-format style to apply by default when no .clang-format file is found
+          "--fallback-style=Google"
+          ;; When disabled, completions contain only parentheses for function calls.
+          ;; When enabled, completions also contain placeholders for method parameters
+          "--function-arg-placeholders"
+          ;; Add #include directives when accepting code completions
+          ;;   Include what you use. Insert the owning header for top-level symbols, unless the
+          ;;   header is already directly included or the symbol is forward-declared
           "--header-insertion=never"
-          "--header-insertion-decorators=0"))
+          ;; Prepend a circular dot or space before the completion label, depending on whether an include line will be inserted or not
+          "--header-insertion-decorators=0"
+          ;; Enable index-based features. By default, clangd maintains an index built from symbols in opened files.
+          ;; Global index support needs to enabled separatedly
+          "--index"
+          ;; Attempts to fix diagnostic errors caused by missing includes using index
+          "--suggest-missing-includes"
+          ;; Number of async workers used by clangd. Background index also uses this many workers.
+          "-j=4"))
   (set-lsp-priority! 'clangd 2))
+
+;; Always keep 10 lines of buffer above/below the cursor
+(setq scroll-margin 10)
+
+;; Auto save buffers on focus lost
+(add-function :after after-focus-change-function (lambda () (save-some-buffers t)))
+;; Exit insert mode on focus loss
+(add-function :after after-focus-change-function (lambda () (evil-normal-state)))
