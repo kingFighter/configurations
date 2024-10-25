@@ -119,3 +119,8 @@
 (add-function :after after-focus-change-function (lambda () (save-some-buffers t)))
 ;; Exit insert mode on focus loss
 (add-function :after after-focus-change-function (lambda () (evil-normal-state)))
+
+;; Use Ripgrep for alien indexing with Projectile
+;; (after! projectile
+;;   (setq projectile-indexing-method 'alien
+;;         projectile-generic-command "rg --files --hidden"))
