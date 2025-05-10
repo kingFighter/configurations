@@ -124,3 +124,6 @@
 ;; (after! projectile
 ;;   (setq projectile-indexing-method 'alien
 ;;         projectile-generic-command "rg --files --hidden"))
+
+(after! evil-escape
+  (setq evil-escape-key-sequence "jk"))
